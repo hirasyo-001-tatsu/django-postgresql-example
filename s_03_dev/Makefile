@@ -52,16 +52,13 @@ purge.dev:
 	make purge.dev.wbs
 	make purge.dev.api
 	make purge.dev.dbs
-	docker builder prune -f
 
 purge.dev.front:
 	make purge.dev.wbs
-	docker builder prune -f
 
 purge.dev.back:
 	make purge.dev.api
 	make purge.dev.dbs
-	docker builder prune -f
 
 purge.dev.wbs:
 	cd $(WBS_CON) && make purge.dev.wbs
@@ -75,9 +72,4 @@ purge.dev.dbs:
 
 #---[ 6. Other Commands ]--------------------------------------------------
 
-ddd:
-	docker image prune -a -f
-
-ccc:
-	docker container ls -a; docker system df; docker stop $(docker ps -q); docker volume rm $(docker volume ls -qf dangling=true); docker container prune -f; docker image prune -a -f; docker builder prune -f; docker images -a -f; docker container ls -a; docker system df
 
