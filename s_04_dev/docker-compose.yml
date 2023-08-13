@@ -1,21 +1,21 @@
 version: "3"
 services:
 
-  111wbs_dev:
-    container_name: 111wbs_dev
-    build: ./111wbs_dev
+  110wbs_dev:
+    container_name: 110wbs_dev
+    build: ./110wbs_dev
     volumes:
-      - ../s_01_src/111wbs_src:/usr/src/app
+      - ../s_01_src/110wbs_src:/usr/src/app
       - wbs-vol:/usr/src/app
     working_dir: /usr/src/app
     environment:
       - CHOKIDAR_USEPOLLING=true # Hot-reload
     ports:
-      - "3000:3000"
+      - "3001:3000"
     tty: true
     stdin_open: true
     networks:
-      - django_nextjs_postgresql_example_network
+      - django_react_postgresql_example_network
     # platform: linux/x86_64
 
   124dja_dev:
@@ -32,7 +32,7 @@ services:
       - "8000:8000"
       # Port No. of Host(non-overlapable):Port No. of Container(overlappable)
     networks:
-      - django_nextjs_postgresql_example_network
+      - django_react_postgresql_example_network
     # command: django-admin startproject config .
     # command: python manage.py runserver 0.0.0.0:8000
     depends_on:
@@ -55,10 +55,10 @@ services:
     environment:
         POSTGRES_PASSWORD: ${PGSQL_PW}
     networks:
-      - django_nextjs_postgresql_example_network
+      - django_react_postgresql_example_network
 
 # include:
-#   - ./111wbs_dev/docker-compose.yml
+#   - ./110wbs_dev/docker-compose.yml
 #   # - ./124dja_dev/docker-compose.yml
 #   # - ./134dbs_dev/docker-compose.yml
 
@@ -68,5 +68,5 @@ volumes:
   dbs-vol:
 
 networks:
-  django_nextjs_postgresql_example_network:
+  django_react_postgresql_example_network:
     driver: bridge
